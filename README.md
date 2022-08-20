@@ -1,55 +1,46 @@
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/850110/153227453-ee147c59-830b-48ad-930e-7075d3229ae4.png" title="AgileSearch" width="150" style="margin-bottom: 1rem" />
-</p>
+# Getting Started with Create React App
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-👋  Hej välkommen på [AgileSearch](agilesearch) fullstack challenge!
+## Available Scripts
 
-My name is Broodar Plawind and I'm living in a far far away solar system located in the Arkanis sector of the Outer Rim Territories, in the Tatooine desert.
+In the project directory, you can run:
 
-I'm would love to spend the next months travelling around the universe, my idea is to visit and stay at least 15 days on the planets that I always dreamed about: Naboo, Mandalore and Hoth.
+### `npm start`
 
-Could you help me to get the right spaceship tickets for me? I'm afraid that I'm not good enough with today's technology and I don't know where to start.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-----
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-_How would you help Brooday to get the **best experience** for planning his vacations?_
-We are going to evaluate everything, but the main focus will be:
+### `npm test`
 
-* :bulb: Creativity.
-* :wrench: Tools.
-* :man_technologist: Good practice in the choosen technology.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Dataset
+### `npm run build`
 
-The `dataset.json` has all the necessary information for searching with the following format:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```js
-[
-  {
-    origin: String,
-    destination: String,
-    price: Float,
-    availability: Number,
-    date: String
-  }
-]
-```
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## Planets
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-The `planets.json` file has the information about the different planets that the starships can travel to.
+### `npm run eject`
 
-# How to start
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-We encourage you to fork this repository and when you are done with the challenge, you can send us the forked URL so we can later review it.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-If your solution needs to prepare an environment of any kind, please don't forget to let us know.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-###### 🙌  Psst, One more thing!
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-The challenge is open to any solution. You can use your imagination, creativity and skills to deliver the best of the worlds you like the most.
+## Learn More
 
-You can always reach us by writing an email with all your questions and/or feedback about this challenge.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-[agilesearch]: https://www.agilesearch.io
+To learn React, check out the [React documentation](https://reactjs.org/).
