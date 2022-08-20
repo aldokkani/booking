@@ -1,5 +1,6 @@
-import React from 'react';
+import React from 'react'
+import TripsList from './Components/Trips/List'
 
-const App = () => <>Hello World!</>
+const App = (): JSX.Element => <TripsList/>
 
-export default App;
+export default App
