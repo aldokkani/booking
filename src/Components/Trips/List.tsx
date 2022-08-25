@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import TRIPS from '../../data-mocks/trips.json'
+import { Grid } from '@mui/material'
 
 interface Trip {
   date: string
@@ -37,8 +38,16 @@ const renderTrip = (trip: Trip, index: number): JSX.Element => (
     </React.Fragment>
 )
 
-const TripsList = (): JSX.Element => <Box sx={{ minWidth: 275 }}>
-    {TRIPS.map(renderTrip).map((card, index) => <Card key={index} variant="outlined">{card}</Card>)}
-</Box>
+const TripsList = (): JSX.Element => (
+    <Grid container spacing={2}>
+        {TRIPS.map((trip: Trip, index: number) =>
+            <Grid key={index} item xs={6}>
+                <Box>
+                    <Card variant="outlined">{renderTrip(trip, index)}</Card>
+                </Box>
+            </Grid>
+        )}
+    </Grid>
+)
 
 export default TripsList
