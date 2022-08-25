@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
@@ -7,6 +7,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import TRIPS from '../../data-mocks/trips.json'
 import { Grid } from '@mui/material'
+import { TripContext } from '../../App'
 
 interface Trip {
   date: string
@@ -38,9 +39,12 @@ const renderTrip = (trip: Trip, index: number): JSX.Element => (
     </React.Fragment>
 )
 
-const TripsList = (): JSX.Element => (
+const TripsList = (): JSX.Element => {
+  const { tripSearch } = useContext(TripContext)
+  const availableTrips = TRIPS.filter(trip => trip.origin === tripSearch.origin && trip.destination === tripSearch.destination)
+  return (
     <Grid container spacing={2}>
-        {TRIPS.map((trip: Trip, index: number) =>
+        {availableTrips.map((trip: Trip, index: number) =>
             <Grid key={index} item xs={6}>
                 <Box>
                     <Card variant="outlined">{renderTrip(trip, index)}</Card>
@@ -48,6 +52,7 @@ const TripsList = (): JSX.Element => (
             </Grid>
         )}
     </Grid>
-)
+  )
+}
 
 export default TripsList
