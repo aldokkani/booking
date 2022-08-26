@@ -10,13 +10,14 @@ import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import Search from './Components/Search'
 
+const defaultTripSearch = { origin: 'ALL', destination: 'ALL', priceRange: [0, 1000] }
 const setTripSearch: Function = () => { }
-const tripSearch: { origin?: string, destination?: string } = {}
+const tripSearch: { origin: string, destination: string, priceRange: number[] } = defaultTripSearch
 
 export const TripContext = createContext({ tripSearch, setTripSearch })
 
 const App = (): JSX.Element => {
-  const [tripSearch, setTripSearch] = useState({})
+  const [tripSearch, setTripSearch] = useState(defaultTripSearch)
 
   return (<React.Fragment>
     <CssBaseline />

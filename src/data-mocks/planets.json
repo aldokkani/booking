@@ -1,5 +1,9 @@
 [
   {
+    "name": "All",
+    "code": "ALL"
+  },
+  {
     "name": "Naboo",
     "code": "NAB"
   },

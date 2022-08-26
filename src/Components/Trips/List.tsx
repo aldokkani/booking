@@ -17,6 +17,9 @@ interface Trip {
   availability: number
 }
 
+const isInPriceRange = (priceRange: number[], tripPrice: number): boolean =>
+  tripPrice >= priceRange[0] && tripPrice <= priceRange[1]
+
 const renderTrip = (trip: Trip, index: number): JSX.Element => (
     <React.Fragment>
         <CardContent>
@@ -41,7 +44,12 @@ const renderTrip = (trip: Trip, index: number): JSX.Element => (
 
 const TripsList = (): JSX.Element => {
   const { tripSearch } = useContext(TripContext)
-  const availableTrips = TRIPS.filter(trip => trip.origin === tripSearch.origin && trip.destination === tripSearch.destination)
+  const availableTrips = TRIPS.filter(
+    trip =>
+      (tripSearch.origin === 'ALL' || trip.origin === tripSearch.origin) &&
+            (tripSearch.destination === 'ALL' || trip.destination === tripSearch.destination) &&
+            isInPriceRange(tripSearch.priceRange, trip.price)
+  )
   return (
     <Grid container spacing={2}>
         {availableTrips.map((trip: Trip, index: number) =>
