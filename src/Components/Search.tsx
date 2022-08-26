@@ -94,6 +94,7 @@ const Search = (): JSX.Element => {
             getAriaValueText={valuetext}
             min={0}
             max={1000}
+            step={10}
             marks={[{ value: 0, label: '0$' }, { value: 1000, label: '1000$' }]}
             disableSwap
           />

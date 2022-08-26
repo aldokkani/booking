@@ -52,6 +52,17 @@ const TripsList = (): JSX.Element => {
   )
   return (
     <Grid container spacing={2}>
+        <Grid item xs={12}>
+            <Typography variant="overline" gutterBottom>
+                Results found: {availableTrips.length}
+            </Typography>
+        </Grid>
+        {availableTrips.length === 0 &&
+        <Grid item xs={12}>
+            <Typography variant="h6" gutterBottom>
+                Sorry, no available trips!
+            </Typography>
+        </Grid>}
         {availableTrips.map((trip: Trip, index: number) =>
             <Grid key={index} item xs={6}>
                 <Box>

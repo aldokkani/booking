@@ -9,6 +9,7 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import Search from './Components/Search'
+import { Divider } from '@mui/material'
 
 const defaultTripSearch = { origin: 'ALL', destination: 'ALL', priceRange: [0, 1000] }
 const setTripSearch: Function = () => { }
@@ -39,8 +40,9 @@ const App = (): JSX.Element => {
       </Toolbar>
     </AppBar>
     <TripContext.Provider value={{ tripSearch, setTripSearch }}>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" style={{ marginTop: 20 }}>
         <Search />
+        <Divider variant="middle" style={{ margin: 20 }} />
         <TripsList />
       </Container>
     </TripContext.Provider>
