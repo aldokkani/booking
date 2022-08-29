@@ -2,23 +2,27 @@ import React, { useContext, useState } from 'react'
 import { TextField, MenuItem, Grid, Slider, Box, Typography } from '@mui/material'
 import PLANETS from '../data-mocks/planets.json'
 import { TripContext } from '../App'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 
 const minSliderDistance = 100
 
 const Search = (): JSX.Element => {
   const { tripSearch, setTripSearch } = useContext(TripContext)
+  const [tripDate, setTripDate] = useState<Date | null>(tripSearch.date)
   const [origin, setOrigin] = useState(tripSearch.origin)
   const [destination, setDestination] = useState(tripSearch.destination)
   const [priceRange, setPriceRange] = React.useState<number[]>(tripSearch.priceRange)
 
   const handleChangeOrigin = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setOrigin(event.target.value)
-    setTripSearch({ origin: event.target.value, destination, priceRange })
+    setTripSearch({ origin: event.target.value, destination, priceRange, date: tripDate })
   }
 
   const handleChangeDestination = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setDestination(event.target.value)
-    setTripSearch({ origin, destination: event.target.value, priceRange })
+    setTripSearch({ origin, destination: event.target.value, priceRange, date: tripDate })
   }
 
   const handlePriceChange = (
@@ -40,7 +44,7 @@ const Search = (): JSX.Element => {
   const handlePriceChangeCommitted = (
     event: React.SyntheticEvent | Event,
     newValue: number | number[]
-  ): void => Array.isArray(newValue) && setTripSearch({ origin, destination, priceRange: newValue })
+  ): void => Array.isArray(newValue) && setTripSearch({ origin, destination, priceRange: newValue, date: tripDate })
 
   const valuetext = (value: number): string => `${value}$`
 
@@ -99,6 +103,19 @@ const Search = (): JSX.Element => {
             disableSwap
           />
         </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <DatePicker
+            label="Trips starting from"
+            value={tripDate}
+            onChange={(newValue) => {
+              setTripDate(newValue)
+              setTripSearch({ origin, destination, priceRange, date: newValue })
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider>
       </Grid>
     </Grid>
   )

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
@@ -47,14 +47,19 @@ const renderTrip = (trip: Trip, index: number): JSX.Element => (
 
 const TripsList = (): JSX.Element => {
   const { tripSearch } = useContext(TripContext)
-  const availableTrips = TRIPS.filter(
-    trip =>
-      (tripSearch.origin === 'ALL' || trip.origin === tripSearch.origin) &&
-            (tripSearch.destination === 'ALL' || trip.destination === tripSearch.destination) &&
-            isInPriceRange(tripSearch.priceRange, trip.price)
+  const availableTrips: Trip[] = TRIPS.filter(trip =>
+    (tripSearch.origin === 'ALL' || trip.origin === tripSearch.origin) &&
+    (tripSearch.destination === 'ALL' || trip.destination === tripSearch.destination) &&
+    isInPriceRange(tripSearch.priceRange, trip.price) &&
+    (new Date(tripSearch.date) <= new Date(trip.date))
   )
   const tripsCount = availableTrips.length
-  const [tripsPage, setTripsPage] = useState(availableTrips.slice(0, 10))
+  const [tripsPage, setTripsPage] = useState<Trip[]>([])
+  const [page, setPage] = useState(1)
+
+  useEffect(() => {
+    setTripsPage(availableTrips.slice((page - 1) * 10, page * 10))
+  }, [page, availableTrips])
 
   return (
     <Grid container spacing={2}>
@@ -75,9 +80,7 @@ const TripsList = (): JSX.Element => {
                 <Pagination
                     variant="outlined" shape="rounded"
                     count={Math.ceil(tripsCount / 10)}
-                    onChange={((event, page: number) => {
-                      setTripsPage(availableTrips.slice((page - 1) * 10, page * 10))
-                    })}
+                    onChange={((event, page: number) => setPage(page))}
                 />
             </Stack>
         </Grid>}

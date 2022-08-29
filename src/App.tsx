@@ -11,9 +11,9 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Search from './Components/Search'
 import { Divider } from '@mui/material'
 
-const defaultTripSearch = { origin: 'ALL', destination: 'ALL', priceRange: [0, 1000] }
+const defaultTripSearch = { origin: 'ALL', destination: 'ALL', priceRange: [0, 1000], date: new Date('2021-11-15') }
 const setTripSearch: Function = () => { }
-const tripSearch: { origin: string, destination: string, priceRange: number[] } = defaultTripSearch
+const tripSearch: { origin: string, destination: string, priceRange: number[], date: Date } = defaultTripSearch
 
 export const TripContext = createContext({ tripSearch, setTripSearch })
 
