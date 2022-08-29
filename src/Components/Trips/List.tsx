@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
+import { Grid, Pagination, Stack, Typography, Button, CardContent, CardActions, Box, Card } from '@mui/material'
+import { v4 as uuidv4 } from 'uuid'
 import TRIPS from '../../data-mocks/trips.json'
-import { Grid, Pagination, Stack } from '@mui/material'
 import { TripContext } from '../../App'
 
+const tripsData = TRIPS.map(trip => ({ id: uuidv4(), ...trip }))
+
 interface Trip {
+  id: string
   date: string
   origin: string
   destination: string
@@ -47,7 +45,7 @@ const renderTrip = (trip: Trip, index: number): JSX.Element => (
 
 const TripsList = (): JSX.Element => {
   const { tripSearch } = useContext(TripContext)
-  const availableTrips: Trip[] = TRIPS.filter(trip =>
+  const availableTrips: Trip[] = tripsData.filter(trip =>
     (tripSearch.origin === 'ALL' || trip.origin === tripSearch.origin) &&
     (tripSearch.destination === 'ALL' || trip.destination === tripSearch.destination) &&
     isInPriceRange(tripSearch.priceRange, trip.price) &&
@@ -59,7 +57,7 @@ const TripsList = (): JSX.Element => {
 
   useEffect(() => {
     setTripsPage(availableTrips.slice((page - 1) * 10, page * 10))
-  }, [page, availableTrips])
+  }, [page, availableTrips.map(trip => trip.id).join(''), setTripsPage])
 
   return (
     <Grid container spacing={2}>
